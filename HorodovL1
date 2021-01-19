@@ -1,0 +1,145 @@
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Lab {
+	/* Створіть метод, який сортує будь який масив int[] методом вибору.*/
+	public static ArrayList<Integer> selectionSort(int[] array) { 
+		ArrayList<Integer> list1 = new ArrayList<Integer>();
+	    for (int i = 0; i < array.length; i++) {
+	        int min = array[i];
+	        int minId = i;
+	        for (int j = i+1; j < array.length; j++) {
+	            if (array[j] < min) {
+	                min = array[j];
+	                minId = j;
+	            }
+	        }
+	        int temp = array[i];
+	        array[i] = min;
+	        array[minId] = temp;
+	        list1.add(array[i]);
+	    }
+		return list1;
+	}
+	/*Створіть метод, який приймає на вхід рядок та на виході змінює 
+	 * регістри букв на протилежні. Приклад - на вході "рУматРОн" на виході "РуМАТроН"*/
+	public static String transfer (String str)
+	{
+	   
+	    char[] chars = str.toCharArray();
+	    str = "";
+	    for (char c : chars) {
+	        if (Character.isLowerCase(c))
+	            c = Character.toUpperCase(c);
+	        else
+	            c = Character.toLowerCase(c);
+	        str += c;
+	    }
+	    return str;
+	}
+	/*Створіть метод, який приймає параметр int та конвертує його з десятичної у шістнадцятирічну систему 
+	 * обчислення та повертає у вигляді String. Приклад- приймає 11, повертає =0xb=*/
+/*	public static String Convert (int number) {
+		String convert = Integer.toHexString(number);
+        return convert;
+	}*/
+	public static String Convert(int number) {
+		 
+        StringBuilder result = new StringBuilder();
+        int delimoe = number;
+        while (true){
+            int ostatok = delimoe % 16;
+            result.append(numToStr(ostatok));
+            delimoe = delimoe / 16;
+      
+            if(delimoe < 16) result.append(numToStr(delimoe));
+            if(delimoe < 16) break;
+        }
+ 
+        return result.reverse().toString();
+    }
+ 
+private static String numToStr(int a){
+        switch (a){
+            case 0:
+                return "0";
+            case 1:
+                return "1";
+            case 2:
+                return "2";
+            case 3:
+                return "3";
+            case 4:
+                return "4";
+            case 5:
+                return "5";
+            case 6:
+                return "6";
+            case 7:
+                return "7";
+            case 8:
+                return "8";
+            case 9:
+                return "9";
+            case 10:
+                return "A";
+            case 11:
+                return "B";
+            case 12:
+                return "C";
+            case 13:
+                return "D";
+            case 14:
+                return "E";
+            case 15:
+                return "F";
+            default:
+                return "";
+        }
+    }
+	
+	
+
+	public static void main(String[] args) {  
+		int[]arr = new int [] {9,8,7,6,5,7,3,2,1};
+		 System.out.print(selectionSort(arr));
+		 String str = "hey HOW are YOU ";
+		 System.out.print(transfer(str));
+		 int number = 124;
+		 System.out.print(Convert(number));
+	    
+		//Створіть метод, який знаходить суму цифр будь якого числа int
+		     
+		    int n= 1110;
+			int sum = 0;
+			while(n != 0){
+			        sum += (n % 10);
+			        n/=10;
+			}
+			System.out.println(sum);
+			
+	   /*Розробіть метод, який дозволяє знайти спільні елементи
+		*  двох діапазонів цілих чисел, та вивести їх на екран. 
+		Приклад- діапазон з 5 до 11 та діапазон з 18 до 9. Спільні елементи- 9,10,11*/	
+	    int[] arr1 = new int[]{5,6,7,8,9,10,11};
+	    int[] arr2 = new int[]{18,17,16,15,14,13,12,11,10,9};
+	    getIntersection(arr1, arr2);
+	   
+	}
+
+	public static Object[] getIntersection(int[] arr1, int[] arr2) {
+	    ArrayList<Integer> list = new ArrayList<Integer>();
+	    for (int i = 0; i < arr1.length; i++) {
+	        for (int j = 0; j < arr2.length; j++) {
+	            if (arr1[i] == arr2[j]) {
+	                list.add(arr1[i]);
+	            }
+	        }
+	    }
+	    System.out.print(list);
+	    return list.toArray();
+	    
+	}
+	
+}
